@@ -1,8 +1,10 @@
 import Switch from '@mui/material/Switch';
+import { nanoid } from 'nanoid';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import del from '../../assets/del.png';
 import dots from '../../assets/six-dots.png';
-import { addRules } from '../../redux/action';
+import { addRules, deleteAll, } from '../../redux/action';
 import styles from './AddRuleCard.module.css';
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
@@ -19,6 +21,7 @@ const AddRuleCard = () => {
         addRules({
           title: text.trim(),
           status: false,
+          id: nanoid(5),
         })
       );
     } else {
@@ -26,11 +29,19 @@ const AddRuleCard = () => {
     }
   };
 
+  const handleChange = (rule) => {
+    console.log(rule);
+  };
+
+  const handleDelete = () => {
+    dispatch(deleteAll());
+  };
+
   return (
     <>
       <div className={styles.addRule}>
         <div className={styles.totalRules}>
-          <p>Rules</p>
+          <p>Rules {ruleLengthArr}</p>
         </div>
 
         <div className={styles.div}>
@@ -40,14 +51,22 @@ const AddRuleCard = () => {
 
         <div className={styles.showRules}>
           {rules.map((rule) => (
-            <div className={styles.eachRule}>
+            <div className={styles.eachRule} key={rule.id}>
               <p>{rule.title}</p>
-              <Switch {...label} defaultChecked />
+              <Switch
+                {...label}
+                defaultunchecked='false'
+                onChange={handleChange(rule)}
+              />
             </div>
           ))}
         </div>
         <div className={styles.addRuleButton}>
           <button onClick={handleAdd}>Add Rule</button>
+        </div>
+        <div className={styles.deleteAll}>
+          <p onClick={handleDelete}>Delete All</p>
+          <img src={del} alt='del all' onClick={handleDelete} />
         </div>
       </div>
     </>

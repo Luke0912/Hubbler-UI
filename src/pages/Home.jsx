@@ -1,10 +1,43 @@
+import { useState } from 'react';
+import arrowB from '../assets/back.png';
 import logo from '../assets/logo.png';
 import arrow from '../assets/next.png';
-import arrowB from '../assets/back.png';
-import styles from './Home.module.css';
 import AddRuleCard from '../components/AddRuleCardHandler/AddRuleCard';
 import RuleCard from '../components/RuleCardHandler/RuleCard';
+import { months } from '../utils/index';
+import styles from './Home.module.css';
+
 export const Home = () => {
+  let today = new Date();
+
+  let date =
+    today.getFullYear() +
+    '-' +
+    months[today.getMonth()] +
+    '-' +
+    today.getDate() +
+    '  ' +
+    today.getHours() +
+    ':' +
+    today.getMinutes() +
+    ':' +
+    today.getSeconds();
+
+  const [button, setButton] = useState(false);
+  const [time, setTime] = useState(date);
+  const [isDisabled, setIsDisabled] = useState(false);
+
+  const handleChange = () => {
+    if (!button) {
+      setButton(true);
+      setTime(date);
+      setIsDisabled(!isDisabled);
+    } else if (button) {
+      setButton(false);
+      setIsDisabled(isDisabled);
+    }
+  };
+
   return (
     <>
       <div className={styles.container}>
@@ -41,10 +74,14 @@ export const Home = () => {
           <div className={styles.topRight}>
             <div className={styles.timeButton}>
               <div className={styles.timeStamp}>
-                <p>Time Stamp</p>
+                <p> App Saved On {time}</p>
               </div>
               <div className={styles.button}>
-                <button>Done</button>
+                {
+                  <button onClick={handleChange}>
+                    {!button ? 'Edit' : 'Done'}
+                  </button>
+                }
               </div>
             </div>
           </div>
@@ -56,13 +93,13 @@ export const Home = () => {
               <p>Back To Stages</p>
             </div>
             <div className={styles.addRuleCard}>
-                <AddRuleCard></AddRuleCard>
+              <AddRuleCard></AddRuleCard>
             </div>
           </div>
           <div className={styles.card}>
-          <div className={styles.displayRuleCard}>
-            <RuleCard></RuleCard>
-          </div>
+            <div className={styles.displayRuleCard}>
+              <RuleCard isDisabled={isDisabled}></RuleCard>
+            </div>
           </div>
         </div>
       </div>

@@ -70,3 +70,15 @@
   background-color: white;
   border-radius: 2px;
 }
+.deleteAll > img {
+  width: 1%;
+  position: fixed;
+  top: 610px;
+  left: 50px;
+}
+.deleteAll > p {
+  position: fixed;
+  top: 590px;
+  left: 70px;
+  cursor: pointer;
+}

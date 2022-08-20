@@ -59,6 +59,9 @@
   height: 30px;
   width: 520px;
 }
+.collection > img {
+  width: 1.5%;
+}
 .action {
   margin-top: 10px;
   display: flex;
@@ -73,6 +76,7 @@
 }
 
 .actionInput > input {
+  text-align: center;
   height: 25px;
   width: 220px;
 }
@@ -94,6 +98,33 @@
   border: none;
   border-radius: 2px;
 }
-.hrColor{
-    background-color: green;
+.hrColor {
+  background-color: green;
+}
+.actionInput :nth-child(2) {
+  width: 1%;
+  position: absolute;
+  left: 415px;
+  top: 423px;
+}
+.actionInput :nth-child(3) {
+  width: 1%;
+  position: absolute;
+  left: 655px;
+  top: 423px;
+}
+.setup {
+  position: fixed;
+  left: 590px;
+  top: 420px;
+  font-size: small;
+  font-weight: 600;
+  color: blue;
+}
+.actionOutput {
+  margin-top: 10px;
+  display: flex;
+    justify-content: space-around;
+  align-items: flex-start;
+  gap: 20px;
 }

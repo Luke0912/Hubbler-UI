@@ -105,18 +105,18 @@
   width: 1%;
   position: absolute;
   left: 415px;
-  top: 423px;
+  top: 417px;
 }
 .actionInput :nth-child(3) {
   width: 1%;
   position: absolute;
   left: 655px;
-  top: 423px;
+  top: 417px;
 }
 .setup {
   position: fixed;
   left: 590px;
-  top: 420px;
+  top: 415px;
   font-size: small;
   font-weight: 600;
   color: blue;

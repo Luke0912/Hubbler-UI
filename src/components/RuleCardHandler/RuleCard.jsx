@@ -1,23 +1,27 @@
-import { nanoid } from 'nanoid';
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useDispatch } from 'react-redux/es/exports';
-import del from '../../assets/del.png';
-import start from '../../assets/start.png';
 import { addActions, deleteAllActions } from '../../redux/action';
+
+import del from '../../assets/del.png';
+import { nanoid } from 'nanoid';
+import start from '../../assets/start.png';
 import styles from './RuleCard.module.css';
+import { useDispatch } from 'react-redux/es/exports';
+import { useSelector } from 'react-redux';
+import { useState } from 'react';
 
 const RuleCard = ({ isDisabled }) => {
-  const [action, setAction] = useState('');
+  const rules = useSelector((store) => store.rules);
+  const rule = rules.map((e) => e.title);
+  const editItem = rule[rule.length - 1];
   const actions = useSelector((store) => store.actions);
   const actionLengthArr = useSelector((store) => store.actions.length);
   const dispatch = useDispatch();
+  const [action, setAction] = useState('');
 
   const handleAction = () => {
     if (actionLengthArr <= 4) {
       dispatch(
         addActions({
-          action: action.trim(),
+          action: action,
           status: false,
           id: nanoid(5),
         })
@@ -38,7 +42,7 @@ const RuleCard = ({ isDisabled }) => {
           <p>Button Name</p>
         </div>
         <div className={styles.editCardName}>
-          {<input type='text' disabled={isDisabled} />}
+          <input type='text' disabled={isDisabled} value={editItem} />
         </div>
       </div>
 
@@ -53,8 +57,8 @@ const RuleCard = ({ isDisabled }) => {
           <select name='' id='' disabled={isDisabled}>
             <option value='text'>Text</option>
             <option value='starter'>Starter </option>
-            <option value='addnew'>Add New</option>/>option>
-            <option value='opne'>Open</option>
+            <option value='addnew'>Add New</option>
+            <option value='open'>Open</option>
           </select>
           <select name='' id='' disabled={isDisabled}>
             <option value='contains'>Contains</option>

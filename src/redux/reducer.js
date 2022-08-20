@@ -3,6 +3,7 @@ import {
   ADD_RULE,
   DELETE_ALL,
   DELETE_ALL_ACTIONS,
+  UPDATE,
 } from './action.js';
 
 export const initState = {
@@ -31,6 +32,13 @@ export const reducer = (store, { type, payload }) => {
       return {
         ...store,
         action: [...store.actions.splice(0, store.actions.length)],
+      };
+    case UPDATE:
+      return {
+        ...store,
+        rules: store.rules.map((item) =>
+          item.id === payload.i ? { ...item, title: payload.t } : item
+        ),
       };
     default:
       return store;

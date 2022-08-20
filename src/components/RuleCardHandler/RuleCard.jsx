@@ -62,7 +62,13 @@ const RuleCard = ({ isDisabled }) => {
             <option value='new'>New</option>
             <option value='Operate'>Operate</option>
           </select>
-          <input type='text' disabled={isDisabled} placeholder="Type to search and add" />
+          <input
+            disabled={isDisabled}
+            placeholder='Type to search and add'
+            type='search'
+            id='qSearch'
+            name='qSearch'
+          />
           <img src={del} alt='' />
         </div>
         <div className={styles.Button}>

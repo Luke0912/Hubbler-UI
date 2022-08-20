@@ -1,11 +1,12 @@
-import Switch from '@mui/material/Switch';
-import { nanoid } from 'nanoid';
-import { useState } from 'react';
+import { addRules, deleteAll, } from '../../redux/action';
 import { useDispatch, useSelector } from 'react-redux';
+
+import Switch from '@mui/material/Switch';
 import del from '../../assets/del.png';
 import dots from '../../assets/six-dots.png';
-import { addRules, deleteAll, } from '../../redux/action';
+import { nanoid } from 'nanoid';
 import styles from './AddRuleCard.module.css';
+import { useState } from 'react';
 
 const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
@@ -29,9 +30,6 @@ const AddRuleCard = () => {
     }
   };
 
-  const handleChange = (rule) => {
-    console.log(rule);
-  };
 
   const handleDelete = () => {
     dispatch(deleteAll());
@@ -56,7 +54,6 @@ const AddRuleCard = () => {
               <Switch
                 {...label}
                 defaultunchecked='false'
-                onChange={handleChange(rule)}
               />
             </div>
           ))}
